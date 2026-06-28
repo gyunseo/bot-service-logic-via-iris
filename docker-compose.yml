@@ -1,0 +1,26 @@
+services:
+  # 병상 봇 — "병상" 트리거 → CCU 가용병상 조회
+  bot:
+    build: .
+    image: kakao-iris-bot          # bao 와 동일 이미지 공유 (한 번만 빌드)
+    container_name: kakao-ccu-bot
+    # .env 에서 SERVICE_KEY / MULEROUTER_API_KEY 등 주입
+    env_file:
+      - .env
+    environment:
+      # 폰(Iris) 주소. 바뀌면 .env 에 IRIS_HOST 로 덮어쓰기 가능
+      IRIS_HOST: ${IRIS_HOST:-10.203.131.9:3000}
+    command: ["python3", "bot.py"]
+    restart: unless-stopped
+
+  # AI 챗봇 "바오" — "바오" 트리거 → Qwen3.5 Plus 방별 대화
+  bao:
+    build: .
+    image: kakao-iris-bot          # bot 과 동일 이미지 재사용
+    container_name: kakao-bao-bot
+    env_file:
+      - .env
+    environment:
+      IRIS_HOST: ${IRIS_HOST:-10.203.131.9:3000}
+    command: ["python3", "bao.py"]
+    restart: unless-stopped

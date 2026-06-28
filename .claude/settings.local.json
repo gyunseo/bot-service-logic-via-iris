@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('bot.py'\\).read\\(\\)\\); ast.parse\\(open\\('ccu_status.py'\\).read\\(\\)\\); print\\('syntax OK'\\)\")",
+      "Bash(python3 -c \"import ccu_status; print\\('build_report:', callable\\(ccu_status.build_report\\)\\)\")",
+      "Bash(python3 *)",
+      "Bash(awk *)"
+    ]
+  }
+}

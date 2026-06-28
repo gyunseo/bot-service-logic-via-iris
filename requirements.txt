@@ -1,0 +1,5 @@
+websockets>=12.0
+aiohttp>=3.9
+requests>=2.31
+openai>=1.40   # 바오(bao.py) — Qwen3.5 Plus / MuleRouter OpenAI-호환 API
+python-dotenv>=1.0   # 바오(bao.py) — .env 자동 로드
